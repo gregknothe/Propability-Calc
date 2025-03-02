@@ -1,0 +1,163 @@
+html {
+    background-color: rgb(31, 31, 31);
+    color: white;
+    font-family: Calibri;
+    font-weight: lighter;
+}
+
+h1 {
+    font-size: 24px;
+    text-align: center;
+}
+
+input {
+    background-color: rgb(31, 31, 31);
+    color: white;
+    border: 1px white solid;
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    width: 25px;
+    height: 19px;
+    text-align: center;
+
+}
+
+select {
+    background-color: rgb(31, 31, 31);
+    color: white;
+    height: 19px;
+}
+
+#content {
+    display: flex;
+    justify-content: center;
+    margin-top: -20px; 
+    margin-bottom: -39px;
+    
+}
+
+#contentBorder {
+    border: 1px white solid; 
+    border-top: none;
+    display: flex; 
+    padding-top: 2px;
+    padding-bottom: 10px;
+    padding-left: 14px;
+    padding-right: 14px;
+}
+
+.column {
+    text-align: center;
+    padding-right: 15px;
+}
+
+#probContainer{
+    border: 1px white solid;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 5px;
+}
+
+#probability {
+    font-size: 30px;
+    margin-bottom: -12px;
+}
+
+button {
+    border: 2px white;
+    border-top: 1px white solid;
+    background-color: rgb(44, 44, 44);
+    color: white;
+    width: 100%; 
+    font-size: 14px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    height: 30px;
+}
+
+button:hover {
+    background-color: rgb(40, 40, 40);
+}
+
+button:active {
+    background-color: rgb(55, 55, 55);
+}
+
+#sizeContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+#sizeBorder {
+    display: flex;
+    border: 1px white solid;
+    border-bottom: none;
+    padding-bottom: 5px;
+    padding-top: 2px;
+    padding-left: 28px;
+    padding-right: 28px;
+    margin-bottom: -19px;
+}
+
+#deckSizeContainer, #handSizeContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80px;
+    margin-left: -4px;
+    margin-right: -4px;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.description {
+    font-size: 12px;
+    width: 300px;
+    text-align: center;
+    margin: auto;
+}
+
+
+#infoContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.expandableContainer, .expandableContainer2 {
+    width: 300px;
+    border: 1px solid #ffffff;
+    overflow: hidden;
+}
+  
+.expandableHeader, .expandableHeader2 {
+    background-color:  rgb(31, 31, 31);
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+    
+}
+  
+.expandableContent, .expandableContent2 {
+    display: none;
+    padding: 10px;
+    background-color:  rgb(31, 31, 31);
+    font-size: 12px;
+}
+  
+.expandableContainer, .expandableContainer2 {
+    margin-top: -1px;
+    width: 200px;
+}

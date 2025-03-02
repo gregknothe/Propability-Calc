@@ -1,0 +1,416 @@
+<html>
+    <link rel="stylesheet" href="styles.css"> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <h1>
+        Hand Probability Calculator 
+    </h1>
+
+    <div id="sizeContainer">
+        <div id="sizeBorder">
+            <div id="deckSizeContainer">
+                Deck Size
+                <input id="deckSize"> 
+            </div>
+
+            <div id="handSizeContainer">
+                Hand Size
+                <input id="handSize">
+            </div>
+        </div>
+    </div>
+    
+    <br>
+    <br>
+
+    <div id="content">
+        <div id="contentBorder">
+            <div class="column" id="group">
+                Group
+                <br>
+                A
+                <br>
+                B
+                <br>
+                C
+                <br>
+                D
+                <br>
+                E
+                <br>
+                F
+                <br>
+                G
+                <br>
+                <select id="mix1Label">
+                    <option>AB</option>
+                    <option>AC</option>
+                    <option>AD</option>
+                    <option>AE</option>
+                    <option>AF</option>
+                    <option>AG</option>
+                    <option>BC</option>
+                    <option>BD</option>
+                    <option>BE</option>
+                    <option>BF</option>
+                    <option>BG</option>
+                    <option>CD</option>
+                    <option>CE</option>
+                    <option>CF</option>
+                    <option>CG</option>
+                    <option>DE</option>
+                    <option>DF</option>
+                    <option>DG</option>
+                    <option>FG</option>
+                </select>
+                <br>
+                <select id="mix2Label">
+                    <option>AB</option>
+                    <option>AC</option>
+                    <option>AD</option>
+                    <option>AE</option>
+                    <option>AF</option>
+                    <option>AG</option>
+                    <option>BC</option>
+                    <option>BD</option>
+                    <option>BE</option>
+                    <option>BF</option>
+                    <option>BG</option>
+                    <option>CD</option>
+                    <option>CE</option>
+                    <option>CF</option>
+                    <option>CG</option>
+                    <option>DE</option>
+                    <option>DF</option>
+                    <option>DG</option>
+                    <option>FG</option>
+                </select>
+                <br> 
+                <select id="mix3Label">
+                    <option>AB</option>
+                    <option>AC</option>
+                    <option>AD</option>
+                    <option>AE</option>
+                    <option>AF</option>
+                    <option>AG</option>
+                    <option>BC</option>
+                    <option>BD</option>
+                    <option>BE</option>
+                    <option>BF</option>
+                    <option>BG</option>
+                    <option>CD</option>
+                    <option>CE</option>
+                    <option>CF</option>
+                    <option>CG</option>
+                    <option>DE</option>
+                    <option>DF</option>
+                    <option>DG</option>
+                    <option>FG</option>
+                </select>
+            </div>
+
+            <div class="column" id="count">
+                In Deck
+                <br>
+                <input id="gASize">
+                <br>
+                <input id="gBSize">
+                <br>
+                <input id="gCSize">
+                <br>
+                <input id="gDSize"> 
+                <br>
+                <input id="gESize">
+                <br>    
+                <input id="gFSize">
+                <br>
+                <input id="gGSize">
+                <br>
+                <input id="mix1Size">
+                <br>
+                <input id="mix2Size">
+                <br>
+                <input id="mix3Size">
+            
+            </div>
+        
+
+            <div class="column" id="ammount" style="padding-right: 0px;">
+                In Hand
+                <br>
+                <input id="gACount">
+                <br>
+                <input id="gBCount">
+                <br>
+                <input id="gCCount">
+                <br>
+                <input id="gDCount">
+                <br>
+                <input id="gECount">
+                <br>
+                <input id="gFCount">
+                <br>
+                <input id="gGCount">
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+
+
+    
+    <div class="center">
+        <div id="probContainer">
+            Estimated Probability: 
+            <br>
+            <a id="probability">0.00%</a>
+            <br>
+            <button onclick="calculate()">Calculate</button>
+        </div>  
+    </div>
+
+    <div id="infoContainer">
+        
+        <div class="expandableContainer">
+            <div class="expandableHeader" onclick="toggleExpand()">
+                How to Use
+            </div>
+            <div class="expandableContent">
+                1. Input the “Deck Size” and “Hand Size” values into the table. 
+                <br><br>
+                2. Input the “Group A: In Deck” value, which is how many cards exist in the deck that are in “Group A”. Repeat for all other needed groups. 
+                <br><br>
+                3. Input values for mixed groups (if needed). If a card can be used in two groups (ex. In MTG, a card that can both draw and ramp would qualify to be in both the “draw” and “ramp” groups), then you can select the appropriate group combination from the drop down menu and list the count of cards that meet that criteria. 
+                <br><br>
+                4. Input the “Group A: In Hand” value, which is how many cards you want to draw into from the deck of the group. Repeat for all other needed groups. 
+                <br><br>
+                5. Press the “Calculate” button at the bottom of the table to simulate your probability. 
+            </div>
+        </div>
+
+        <div class="expandableContainer2">
+            <div class="expandableHeader2" onclick="toggleExpand2()">
+                How it Works
+            </div>
+            <div class="expandableContent2">
+                This site estimates the probability of drawing your specified hand via the Monte Carlo simulation method, since calculating the exact probability of complex hands is an unreasonable task. Long story short, with enough simulations (this site uses 100,000 simulations) the average converges on the true probability of the event. 
+            </div>
+        </div>
+        
+    </div>
+    
+</html>
+
+<script>
+    var deckSize = document.getElementById("deckSize").value;
+    var handSize = document.getElementById("handSize").value;
+
+    var gASize = document.getElementById("gASize").value;
+    var gBSize = document.getElementById("gBSize").value;
+    var gCSize = document.getElementById("gCSize").value;
+    var gDSize = document.getElementById("gDSize").value;
+    var gESize = document.getElementById("gESize").value;
+    var gFSize = document.getElementById("gFSize").value;
+    var gGSize = document.getElementById("gGSize").value;
+    
+    var gACount = document.getElementById("gACount").value;
+    var gBCount = document.getElementById("gBCount").value;
+    var gCCount = document.getElementById("gCCount").value;
+    var gDCount = document.getElementById("gDCount").value;
+    var gECount = document.getElementById("gECount").value;
+    var gFCount = document.getElementById("gFCount").value;
+    var gGCount = document.getElementById("gGCount").value;
+    
+    var gMix1Size = document.getElementById("mix1Size").value;
+    var gMix2Size = document.getElementById("mix2Size").value;
+    var gMix3Size = document.getElementById("mix3Size").value;
+
+    var gMix1Label = document.getElementById("mix1Label").value;
+    var gMix2Label = document.getElementById("mix2Label").value;
+    var gMix3Label = document.getElementById("mix3Label").value;
+
+    const percValue = document.getElementById("probability");
+
+    function createDeck() {
+        var deck = [];
+        
+        deck = deck.concat(Array(parseInt(gASize)).fill("A"));
+        deck = deck.concat(Array(parseInt(gBSize)).fill("B"));
+        deck = deck.concat(Array(parseInt(gCSize)).fill("C"));
+        deck = deck.concat(Array(parseInt(gDSize)).fill("D"));
+        deck = deck.concat(Array(parseInt(gESize)).fill("E"));
+        deck = deck.concat(Array(parseInt(gFSize)).fill("F"));
+        deck = deck.concat(Array(parseInt(gGSize)).fill("G"));
+        
+        deck = deck.concat(Array(parseInt(gMix1Size)).fill(gMix1Label));
+        deck = deck.concat(Array(parseInt(gMix2Size)).fill(gMix2Label));
+        deck = deck.concat(Array(parseInt(gMix3Size)).fill(gMix3Label));
+
+        if (deck.length < parseInt(deckSize)){
+            var diff = parseInt(deckSize) - deck.length;
+            deck = deck.concat(Array(diff).fill("Z"));
+        }
+        return deck;
+    }
+
+    function drawHand(deck) {
+        var hand = [];
+        for (let i = 0; i < parseInt(handSize); i++) {
+            const randomIndex = Math.floor(Math.random() * deck.length);
+            const randomValue = deck.splice(randomIndex, 1)[0];
+            hand = hand.concat(randomValue);
+        }
+        return hand;
+    }
+
+    function getCount(hand, char) {
+        const currCount = hand.reduce((count, item) => {
+            return count + (item.split(char).length -1);
+        }, 0);
+        return currCount;
+    }
+
+    function conditionCheck(hand){
+        var conditionMet = 0;
+        var clearRequirement = 0;
+        if (gACount > 0) {
+            clearRequirement = clearRequirement + 1; 
+            var countA = getCount(hand, "A");
+            if (countA >= gACount) {
+                conditionMet = conditionMet + 1; 
+            }
+        }
+        if (gBCount > 0) {
+            clearRequirement = clearRequirement + 1; 
+            var countB = getCount(hand, "B");
+            if (countB >= gBCount) {
+                conditionMet = conditionMet + 1; 
+            }
+        }
+        if (gCCount > 0) {
+            clearRequirement = clearRequirement + 1; 
+            var countC = getCount(hand, "C");
+            if (countC >= gCCount) {
+                conditionMet = conditionMet + 1; 
+            }
+        }
+        if (gDCount > 0) {
+            clearRequirement = clearRequirement + 1; 
+            var countD = getCount(hand, "D");
+            if (countD >= gDCount) {
+                conditionMet = conditionMet + 1; 
+            }
+        }
+        if (gECount > 0) {
+            clearRequirement = clearRequirement + 1; 
+            var countE = getCount(hand, "E");
+            if (countE >= gECount) {
+                conditionMet = conditionMet + 1; 
+            }
+        }
+        if (gFCount > 0) {
+            clearRequirement = clearRequirement + 1; 
+            var countF = getCount(hand, "F");
+            if (countF >= gFCount) {
+                conditionMet = conditionMet + 1; 
+            }
+        }
+        if (gGCount > 0) {
+            clearRequirement = clearRequirement + 1; 
+            var countG = getCount(hand, "G");
+            if (countG >= gGCount) {
+                conditionMet = conditionMet + 1; 
+            }
+        }
+
+        if (conditionMet >= clearRequirement) {
+            return 1;
+        }
+        else {
+            return 0;
+        }
+    }
+
+    function sim(iter, deck) {
+        var count = 0;
+        for (let i = 0; i < iter; i++) {
+            var deckList = Array.from(deck);
+            var hand = drawHand(deckList);
+            var count = count + conditionCheck(hand);
+        }
+        return(count/iter);
+    }
+
+    function valueCheck(checkedValue) {
+        if (checkedValue == "" || checkedValue < 0) {
+            return 0;
+        } 
+        else {
+            return checkedValue;
+        }
+    }
+
+    function deckSizeCheck(deck, prob){
+        if (deckSize < deck.length) {
+            return 1;
+        }
+        else {
+            return 0;
+        }
+    }
+
+    function calculate() {
+
+        deckSize = valueCheck(document.getElementById("deckSize").value);
+        handSize = valueCheck(document.getElementById("handSize").value);
+
+        gASize = valueCheck(document.getElementById("gASize").value);
+        gBSize = valueCheck(document.getElementById("gBSize").value);
+        gCSize = valueCheck(document.getElementById("gCSize").value);
+        gDSize = valueCheck(document.getElementById("gDSize").value);
+        gESize = valueCheck(document.getElementById("gESize").value);
+        gFSize = valueCheck(document.getElementById("gFSize").value);
+        gGSize = valueCheck(document.getElementById("gGSize").value);
+        
+        gACount = valueCheck(document.getElementById("gACount").value);
+        gBCount = valueCheck(document.getElementById("gBCount").value);
+        gCCount = valueCheck(document.getElementById("gCCount").value);
+        gDCount = valueCheck(document.getElementById("gDCount").value);
+        gECount = valueCheck(document.getElementById("gECount").value);
+        gFCount = valueCheck(document.getElementById("gFCount").value);
+        gGCount = valueCheck(document.getElementById("gGCount").value);
+
+        gMix1Label = document.getElementById("mix1Label").value;
+        gMix2Label = document.getElementById("mix2Label").value;
+        gMix3Label = document.getElementById("mix3Label").value;
+
+        gMix1Size = valueCheck(document.getElementById("mix1Size").value);
+        gMix2Size = valueCheck(document.getElementById("mix2Size").value);
+        gMix3Size = valueCheck(document.getElementById("mix3Size").value);
+
+        var deck = createDeck();
+        var perc = sim(100000, deck);
+        var deckCheck = deckSizeCheck(deck, perc);
+        if (deckCheck == 0) {
+            percValue.textContent = (perc * 100).toFixed(2) + "%";
+            percValue.setAttribute("style", "font-size: 30px; color: white;");
+        }
+        else {
+            percValue.textContent = "'Deck Size' is less than total value of 'In Deck'.";
+            percValue.setAttribute("style", "font-size: 14px; text-align: center; color:rgb(247, 45, 68);");
+        }
+    }
+
+
+    function toggleExpand() {
+        const content = document.querySelector('.expandableContent');
+        content.style.display = (content.style.display === 'none' || content.style.display === '') ? 'block' : 'none';
+    }
+
+    function toggleExpand2() {
+        const content = document.querySelector('.expandableContent2');
+        content.style.display = (content.style.display === 'none' || content.style.display === '') ? 'block' : 'none';
+    }
+</script>
